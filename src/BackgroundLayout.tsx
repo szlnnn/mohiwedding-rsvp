@@ -18,7 +18,7 @@ function BackgroundLayout() {
                     md: bgImageUrl,
                     lg: bgImageUrl
                 }}
-                bgSize={{ base: '100% auto', md: 'contain' }}     // <- stretch downward on base
+                bgSize={{ base: '100% 110%', md: 'contain' }} // force downward stretch on mobile
                 bgPosition={{ base: 'top center', md: 'center' }}
                 bgRepeat="no-repeat"
                 bgColor="brand.beige"
