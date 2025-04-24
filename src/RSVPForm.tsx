@@ -263,7 +263,13 @@ const RSVPForm: React.FC = () => {
                             />
                         </HStack>
 
-                        <HStack mt={2} spacing={2} flexWrap="wrap" alignItems="start" justifyContent="flex-start">
+                        <Box
+                            mt={2}
+                            display="flex"
+                            flexWrap="wrap"
+                            gap={2}
+                            minH="40px"
+                        >
                             {formData.guests.map((guest, index) => (
                                 <Tag
                                     key={index}
@@ -275,7 +281,7 @@ const RSVPForm: React.FC = () => {
                                     <TagCloseButton onClick={() => removeGuest(index)} />
                                 </Tag>
                             ))}
-                        </HStack>
+                        </Box>
 
                         {formData.guests.length === 0 && (
                             <Box fontSize="sm" color="gray.400" mt={2}>
