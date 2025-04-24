@@ -14,11 +14,11 @@ function BackgroundLayout() {
                 minH="100vh"
                 w="100vw"
                 bgImage={{
-                    base: "url('/front.png')",
+                    base: "url('/front2.png')",
                     md: bgImageUrl,
                     lg: bgImageUrl
                 }}
-                bgSize={{ base: '100% 110%', md: 'contain' }} // force downward stretch on mobile
+                bgSize={{ base: '100% ', md: 'contain' }}
                 bgPosition={{ base: 'top center', md: 'center' }}
                 bgRepeat="no-repeat"
                 bgColor="brand.beige"
