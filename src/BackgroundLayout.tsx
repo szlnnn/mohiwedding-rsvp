@@ -14,7 +14,7 @@ function BackgroundLayout() {
                 minH="100vh"
                 w="100vw"
                 bgImage={{
-                    base: "url('/front2.png')",
+                    base: "url('/front3.png')",
                     md: bgImageUrl,
                     lg: bgImageUrl
                 }}
