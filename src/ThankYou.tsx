@@ -1,10 +1,14 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
+import {useTranslation} from "react-i18next";
 
-const ThankYou = () => (
-    <Box maxW="600px" mx="auto" mt={20} textAlign="center">
-        <Heading mb={4}>🎉 Thank You!</Heading>
-        <Text fontSize="xl">We’ve received your RSVP and look forward to seeing you!</Text>
-    </Box>
-);
+const ThankYou = () => {
+    const {t} = useTranslation();
+    return (
+        <Box maxW="600px" mx="auto" mt={20} textAlign="center">
+            <Heading mb={4}>{t('thanks')}</Heading>
+            <Text fontSize="xl">{t('thankYou')}</Text>
+        </Box>
+    );
+}
 
 export default ThankYou;

@@ -6,6 +6,7 @@ import theme from "./theme.ts";
 import RSVPForm from "./RSVPForm.tsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import ThankYou from "./ThankYou.tsx";
+import './i18n';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

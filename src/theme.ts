@@ -27,6 +27,24 @@ const theme = extendTheme({
       },
     },
   },
+ components: {
+      Switch: {
+        baseStyle: {
+          track: {
+            bg: "#e0d6c9", // Soft sand (visible on beige)
+            _checked: {
+              bg: "#A3C49A", // your theme's green
+            },
+          },
+          thumb: {
+            bg: "#b29785", // muted mocha for visibility
+            _checked: {
+              bg: "white",
+            },
+          },
+        },
+      },
+    }
 })
 
 export default theme
