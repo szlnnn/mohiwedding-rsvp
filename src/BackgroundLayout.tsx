@@ -8,14 +8,19 @@ function BackgroundLayout() {
         ? "url('/front1.png')"
         : "url('/theme2.png')";
 
+
     return (
         <Box
                 minH="100vh"
                 w="100vw"
-                bgImage={bgImageUrl}
+                bgImage={{
+                    base: "url('/front.png')",
+                    md: bgImageUrl,
+                    lg: bgImageUrl
+                }}
                 bgRepeat="no-repeat"
                 bgSize="contain"
-                bgPosition="center"
+                bgPosition="top center"
                 bgColor="brand.beige"
                 display="flex"
                 justifyContent="center"
