@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     Button,
@@ -12,7 +12,12 @@ import {
     TagCloseButton,
     TagLabel,
     useToast,
-    VStack
+    VStack,
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -47,6 +52,43 @@ const RSVPForm: React.FC = () => {
     const [guestInput, setGuestInput] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [selfGuest, setSelfGuest] = useState<string | null>(null);
+
+    useEffect(() => {
+        const name = formData.name.trim();
+
+        if (formData.attending && name) {
+            setFormData(prev => {
+                let updatedGuests = prev.guests;
+
+                if (selfGuest && prev.guests.includes(selfGuest)) {
+                    updatedGuests = updatedGuests.filter(g => g !== selfGuest);
+                }
+
+                updatedGuests = [...updatedGuests, name];
+
+                return {
+                    ...prev,
+                    guests: updatedGuests,
+                    guestNumbers: updatedGuests.length
+                };
+            });
+
+            setSelfGuest(name);
+        }
+
+        if (!formData.attending && selfGuest) {
+            setFormData(prev => {
+                const updatedGuests = prev.guests.filter(g => g !== selfGuest);
+                return {
+                    ...prev,
+                    guests: updatedGuests,
+                    guestNumbers: updatedGuests.length
+                };
+            });
+            setSelfGuest(null);
+        }
+    }, [formData.attending, formData.name]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -111,6 +153,7 @@ const RSVPForm: React.FC = () => {
 
                 setFormData({ name: '', email: '', guests: [], guestNumbers: 0, veganMenus: 0, attending: false });
                 setGuestInput('');
+                setSelfGuest(null);
 
                 setTimeout(() => navigate('/thank-you'), 3000);
             } else {
@@ -201,6 +244,7 @@ const RSVPForm: React.FC = () => {
                                         addGuest();
                                     }
                                 }}
+                                onBlur={addGuest}
                                 bg="brand.beige"
                                 borderColor="gray.300"
                                 _placeholder={{ color: 'gray.500' }}
@@ -219,7 +263,7 @@ const RSVPForm: React.FC = () => {
                             />
                         </HStack>
 
-                        <HStack mt={2} wrap="wrap" spacing={2} flexWrap="wrap">
+                        <HStack mt={2} spacing={2} flexWrap="wrap" alignItems="start" justifyContent="flex-start">
                             {formData.guests.map((guest, index) => (
                                 <Tag
                                     key={index}
@@ -232,6 +276,12 @@ const RSVPForm: React.FC = () => {
                                 </Tag>
                             ))}
                         </HStack>
+
+                        {formData.guests.length === 0 && (
+                            <Box fontSize="sm" color="gray.400" mt={2}>
+                                No guests added yet.
+                            </Box>
+                        )}
                     </FormControl>
 
                     <FormControl isRequired={formData.attending} isDisabled={!formData.attending}>
@@ -248,22 +298,37 @@ const RSVPForm: React.FC = () => {
 
                     <FormControl isRequired={formData.attending} isDisabled={!formData.attending}>
                         <FormLabel>{t('veganMenus')}</FormLabel>
-                        <Input
-                            type="number"
+                        <NumberInput
                             min={0}
-                            name="veganMenus"
+                            max={formData.guestNumbers}
                             value={formData.veganMenus}
-                            onChange={handleChange}
-                            bg="brand.beige"
-                            borderColor="gray.300"
-                            _placeholder={{ color: 'gray.500' }}
-                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
-                        />
+                            onChange={(_, numValue) =>
+                                setFormData(prev => ({ ...prev, veganMenus: numValue }))
+                            }
+                            clampValueOnBlur={false}
+                        >
+                            <NumberInputField
+                                bg="brand.beige"
+                                borderColor="gray.300"
+                                _placeholder={{ color: 'gray.500' }}
+                                _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                            />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper
+                                    _hover={{ bg: 'brand.red', color: 'white' }}
+                                    color="gray.700"
+                                />
+                                <NumberDecrementStepper
+                                    _hover={{ bg: 'brand.red', color: 'white' }}
+                                    color="gray.700"
+                                />
+                            </NumberInputStepper>
+                        </NumberInput>
                     </FormControl>
 
                     <Button
                         colorScheme="brand"
-                        bg="brand.red"
+                        bg="#e0d6c9"
                         _hover={{ bg: 'brand.green', color: 'white' }}
                         type="submit"
                         width="full"
