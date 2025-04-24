@@ -18,9 +18,9 @@ function BackgroundLayout() {
                     md: bgImageUrl,
                     lg: bgImageUrl
                 }}
+                bgSize={{ base: '100% auto', md: 'contain' }}     // <- stretch downward on base
+                bgPosition={{ base: 'top center', md: 'center' }}
                 bgRepeat="no-repeat"
-                bgSize="contain"
-                bgPosition="top center"
                 bgColor="brand.beige"
                 display="flex"
                 justifyContent="center"
