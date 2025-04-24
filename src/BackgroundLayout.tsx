@@ -16,7 +16,7 @@ function BackgroundLayout() {
                 bgImage={{
                     base: "url('/frontfinal.png')",
                     md: bgImageUrl,
-                    lg: bgImageUrl
+                    lg: "/theme2.png"
                 }}
                 bgSize={{ base: '100% ', md: 'contain' }}
                 bgPosition={{ base: 'top center', md: 'center' }}

@@ -11,15 +11,13 @@ const Menu: React.FC = () => {
     return (
         <Box
             position="absolute"
-            top="65%"
+            top={{base: "60%", md: "50%", lg: "50%"}}
             left="50%"
             transform="translate(-50%, -50%)"
             maxW="400px"
             w="full"
         >
-            {/* Wrap everything to manage layout better */}
             <VStack spacing={6} textAlign="center" position="relative">
-                {/* Positioned flag switcher outside of content block */}
                 <Box position="absolute" top="-40px" right="0">
                     <LanguageSwitcher />
                 </Box>
@@ -30,7 +28,7 @@ const Menu: React.FC = () => {
 
                 <Button
                     size="md"
-                    w="full"
+                    w={{ base: "70%", md: "full" }} // narrower on small screens
                     colorScheme="brand"
                     bg="#e0d6c9"
                     _hover={{ bg: 'brand.grey', color: 'white' }}
@@ -39,9 +37,10 @@ const Menu: React.FC = () => {
                     {t('respond')}
                 </Button>
 
+
                 <Button
                     size="md"
-                    w="full"
+                    w={{ base: "70%", md: "full" }} // same here
                     colorScheme="brand"
                     bg="brand.green"
                     _hover={{ color: 'white' }}

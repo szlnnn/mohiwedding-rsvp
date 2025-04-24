@@ -170,6 +170,7 @@ const RSVPForm: React.FC = () => {
             bg="whiteAlpha.800"
             backdropFilter="blur(10px)"
             p={10}
+            margin="20"
             borderRadius="2xl"
             boxShadow="lg"
         >
