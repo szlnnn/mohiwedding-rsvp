@@ -182,6 +182,10 @@ const RSVPForm: React.FC = () => {
                 </Box>
             </Box>
 
+            <Box fontSize="sm" color="gray.500" mt={1} textAlign="center" mb={4}>
+                {t('weddingDateExact')}
+            </Box>
+
             <form onSubmit={handleSubmit}>
 
                 <LanguageSwitcher />
@@ -271,7 +275,7 @@ const RSVPForm: React.FC = () => {
                                 <Box
                                     key={index}
                                     px={3}
-                                    py={1}
+                                    py={0.5}
                                     bg="#e0d6c9"
                                     color="white"
                                     borderRadius="full"
@@ -296,8 +300,8 @@ const RSVPForm: React.FC = () => {
                         </Box>
 
                         {formData.guests.length === 0 && (
-                            <Box fontSize="sm" color="gray.400" mt={2}>
-                                No guests added yet.
+                            <Box fontSize="sm" color="gray.400" mt={1}>
+                                {t("noGuests")}
                             </Box>
                         )}
                     </FormControl>
