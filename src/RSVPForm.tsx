@@ -8,9 +8,6 @@ import {
     IconButton,
     Input,
     Switch,
-    Tag,
-    TagCloseButton,
-    TagLabel,
     useToast,
     VStack,
     NumberInput,
@@ -271,15 +268,30 @@ const RSVPForm: React.FC = () => {
                             minH="40px"
                         >
                             {formData.guests.map((guest, index) => (
-                                <Tag
+                                <Box
                                     key={index}
+                                    px={3}
+                                    py={1}
+                                    bg="#e0d6c9"
+                                    color="white"
                                     borderRadius="full"
-                                    variant="solid"
-                                    colorScheme="brand"
+                                    display="flex"
+                                    alignItems="center"
+                                    fontSize="sm"
+                                    fontWeight="medium"
                                 >
-                                    <TagLabel>{guest}</TagLabel>
-                                    <TagCloseButton onClick={() => removeGuest(index)} />
-                                </Tag>
+                                    {guest}
+                                    <Box
+                                        as="button"
+                                        ml={2}
+                                        fontSize="sm"
+                                        onClick={() => removeGuest(index)}
+                                        color="white"
+                                        _hover={{ opacity: 0.7 }}
+                                    >
+                                        ×
+                                    </Box>
+                                </Box>
                             ))}
                         </Box>
 
