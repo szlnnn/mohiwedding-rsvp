@@ -9,6 +9,7 @@ import ThankYou from "./ThankYou.tsx";
 import './i18n';
 import Menu from "./Menu.tsx";
 import BackgroundLayout from "./BackgroundLayout.tsx";
+import Info from "./Info.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')!).render(
                           <Route index element={<Menu />} />
                           <Route path="rsvp" element={<RSVPForm />} />
                           <Route path="thank-you" element={<ThankYou/>} />
+                          <Route path="info" element={<Info />} />
                       </Route>
                   </Routes>
           </BrowserRouter>
