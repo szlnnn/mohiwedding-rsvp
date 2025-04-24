@@ -24,8 +24,6 @@ function BackgroundLayout() {
                 bgColor="brand.beige"
                 display="flex"
                 justifyContent="center"
-                py={{ base: 10, md: 20 }}
-                px={{ base: 4, md: 8 }}
             >
             <Outlet />  {}
         </Box>
