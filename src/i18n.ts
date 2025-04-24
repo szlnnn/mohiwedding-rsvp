@@ -17,7 +17,10 @@ const resources = {
             countdownText: 'Már csak {{days}} nap, {{hours}} óra, {{minutes}} perc és {{seconds}} másodperc van hátra!',
             countdownHeader: ' Alig várjuk, hogy együtt ünnepeljünk!',
             weddingDateExact: "2025. szeptember 20. – 15:30",
-            noGuests: "Még nem adtál meg vendéget."
+            noGuests: "Még nem adtál meg vendéget.",
+            invitationText: "Szeretettel meghívunk az esküvőnkre.\nHa válaszolni szeretnél, nyomd meg a Válasz gombot.\nHa többet szeretnél megtudni az esküvőről, nyomd meg az Infó gombot.",
+            respond: "Válasz",
+            info: "Infó"
         },
     },
     en: {
@@ -35,7 +38,10 @@ const resources = {
             countdownText: 'Only {{days}} days, {{hours}} hours, {{minutes}} minutes and {{seconds}} seconds to go! ',
             countdownHeader: ' We can’t wait to celebrate with you!',
             weddingDateExact: "September 20, 2025 at 3:30 PM",
-            noGuests: "No guests listed."
+            noGuests: "No guests listed.",
+            invitationText: "We would like to invite you to our ceremony.\nIf you wish to respond, press the Respond button.\nIf you wish to find out more about the wedding, press the Info button.",
+            respond: "Respond",
+            info: "Info"
         },
     },
 };

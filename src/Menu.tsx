@@ -1,38 +1,65 @@
 import React from 'react';
-import {Box, Button, VStack} from '@chakra-ui/react';
+import {Box, Button, HStack, Text, VStack} from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import {useTranslation} from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher.tsx";
 
 const Menu: React.FC = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <Box
-        position="absolute"
-        top="60%" // adjust this to fine-tune vertical position
-        left="50%"
-        transform="translate(-50%, -50%)"
-    >
-        <VStack spacing={6}>
-            <Button
-                size="lg"
-                colorScheme="red"
-                bg="brand.red"
-                _hover={{ bg: 'brand.green' }}
-                onClick={() => navigate('/rsvp')}
+            w="100vw"
+            h="100vh"
+            position="relative"
+            px={4}
+        >
+            <Box
+                position="absolute"
+                top="65%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+                w="full"
+                maxW="400px"
             >
-                RSVP
-            </Button>
-            <Button
-                size="lg"
-                colorScheme="teal"
-                bg="whiteAlpha.800"
-                _hover={{ bg: 'whiteAlpha.900' }}
-                onClick={() => navigate('/info')}
-            >
-                Info
-            </Button>
-        </VStack>
-    </Box>);
+
+                <VStack spacing={6} textAlign="center">
+                    <HStack spacing={2}>
+                        <Box position="relative">
+                            <LanguageSwitcher />
+                        </Box>
+
+                    <Text fontSize="lg" fontWeight="medium">
+                        {t('invitationText')}
+                    </Text>
+
+                    </HStack>
+                    <Button
+                        size="lg"
+                        w="full"
+                        colorScheme="brand"
+                        bg="#e0d6c9"
+                        _hover={{ bg: 'brand.grey', color: 'white' }}
+                        onClick={() => navigate('/rsvp')}
+                    >
+                        {t('respond')}
+                    </Button>
+
+                    <Button
+                        size="lg"
+                        w="full"
+                        colorScheme="brand"
+                        bg="brand.green"
+                        _hover={{ color: 'white' }}
+                        onClick={() => navigate('/info')}
+                    >
+                        {t('info')}
+                    </Button>
+                </VStack>
+            </Box>
+        </Box>
+    );
 };
 
 export default Menu;
