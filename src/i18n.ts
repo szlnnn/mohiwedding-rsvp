@@ -20,7 +20,8 @@ const resources = {
             noGuests: "Még nem adtál meg vendéget.",
             invitationText: "Szeretettel meghívunk az esküvőnkre.\nHa válaszolni szeretnél, nyomd meg a Válasz gombot.\nHa többet szeretnél megtudni az esküvőről, nyomd meg az Infó gombot.",
             respond: "Válasz",
-            info: "Infó"
+            info: "Infó",
+            back: "Vissza"
         },
     },
     en: {
@@ -41,7 +42,8 @@ const resources = {
             noGuests: "No guests listed.",
             invitationText: "We would like to invite you to our ceremony.\nIf you wish to respond, press the Respond button.\nIf you wish to find out more about the wedding, press the Info button.",
             respond: "Respond",
-            info: "Info"
+            info: "Info",
+            back: "Back"
         },
     },
 };

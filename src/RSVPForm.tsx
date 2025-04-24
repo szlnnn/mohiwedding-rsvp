@@ -170,7 +170,7 @@ const RSVPForm: React.FC = () => {
             bg="whiteAlpha.800"
             backdropFilter="blur(10px)"
             p={10}
-            margin="20"
+            margin={{base: "5", md: "10", lg: "20"}}
             borderRadius="2xl"
             boxShadow="lg"
         >
@@ -359,6 +359,16 @@ const RSVPForm: React.FC = () => {
                         loadingText={t('sending')}
                     >
                         {t('submit')}
+                    </Button>
+
+                    <Button
+                        width="full"
+                        colorScheme="brand"
+                        bg="brand.green"
+                        _hover={{ color: 'white' }}
+                        onClick={() => navigate('/')}
+                    >
+                        {t('back')}
                     </Button>
 
                     {submitted && (
