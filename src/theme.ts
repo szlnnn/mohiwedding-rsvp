@@ -1,32 +1,32 @@
-import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+import { extendTheme, theme as baseTheme } from '@chakra-ui/react'
 
-const config: ThemeConfig = {
-  initialColorMode: "dark",
-};
+const config = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
 
 const theme = extendTheme({
   config,
+  fonts: {
+    heading: `'Playfair Display', ${baseTheme.fonts?.heading}`,
+    body: `'Open Sans', ${baseTheme.fonts?.body}`,
+  },
   colors: {
-    gray: {
-      50: "#f9f9f9",
-      100: "#ededed",
-      200: "#d3d3d3",
-      300: "#b3b3b3",
-      400: "#a0a0a0",
-      500: "#898989",
-      600: "#6c6c6c",
-      700: "#202020",
-      800: "#121212",
-      900: "#111",
+    brand: {
+      red: '#d44d3f',
+      green: '#91a07d',
+      beige: '#fdfcf9',
     },
   },
   styles: {
-    global: () => ({
+    global: {
       body: {
-        bgGradient: "linear(to-r, gray.600, gray.700)",
+        bg: '#fdfcf9',
+        color: 'gray.800',
+        fontFamily: 'body',
       },
-    }),
+    },
   },
-});
+})
 
-export default theme;
+export default theme
