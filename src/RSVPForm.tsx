@@ -126,13 +126,6 @@ const RSVPForm: React.FC = () => {
         }
     };
 
-    const inputStyleProps = {
-        bg: 'brand.beige',
-        borderColor: 'gray.300',
-        _placeholder: { color: 'gray.500' },
-        _focus: { borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }
-    };
-
     return (
         <Box
             w="100%"
@@ -147,17 +140,42 @@ const RSVPForm: React.FC = () => {
                 <VStack spacing={6} align="stretch">
                     <FormControl isRequired>
                         <FormLabel>Name</FormLabel>
-                        <Input name="name" value={formData.name} onChange={handleChange} {...inputStyleProps} />
+                        <Input
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            bg="brand.beige"
+                            borderColor="gray.300"
+                            _placeholder={{ color: 'gray.500' }}
+                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                        />
                     </FormControl>
 
                     <FormControl isRequired>
                         <FormLabel>Email</FormLabel>
-                        <Input type="email" name="email" value={formData.email} onChange={handleChange} {...inputStyleProps} />
+                        <Input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            bg="brand.beige"
+                            borderColor="gray.300"
+                            _placeholder={{ color: 'gray.500' }}
+                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                        />
                     </FormControl>
 
                     <FormControl>
                         <FormLabel>Guest Names</FormLabel>
-                        <Textarea name="guests" value={formData.guests} onChange={handleChange} {...inputStyleProps} />
+                        <Textarea
+                            name="guests"
+                            value={formData.guests}
+                            onChange={handleChange}
+                            bg="brand.beige"
+                            borderColor="gray.300"
+                            _placeholder={{ color: 'gray.500' }}
+                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                        />
                     </FormControl>
 
                     <FormControl>
@@ -167,7 +185,13 @@ const RSVPForm: React.FC = () => {
                             value={formData.guestNumbers}
                             onChange={value => handleNumberChange('guestNumbers', value)}
                         >
-                            <NumberInputField name="guestNumbers" {...inputStyleProps} />
+                            <NumberInputField
+                                name="guestNumbers"
+                                bg="brand.beige"
+                                borderColor="gray.300"
+                                _placeholder={{ color: 'gray.500' }}
+                                _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                            />
                         </NumberInput>
                     </FormControl>
 
@@ -178,7 +202,13 @@ const RSVPForm: React.FC = () => {
                             value={formData.veganMenus}
                             onChange={value => handleNumberChange('veganMenus', value)}
                         >
-                            <NumberInputField name="veganMenus" {...inputStyleProps} />
+                            <NumberInputField
+                                name="veganMenus"
+                                bg="brand.beige"
+                                borderColor="gray.300"
+                                _placeholder={{ color: 'gray.500' }}
+                                _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                            />
                         </NumberInput>
                     </FormControl>
 
