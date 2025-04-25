@@ -18,7 +18,7 @@ const Menu: React.FC = () => {
             w="full"
         >
             <VStack spacing={6} textAlign="center" position="relative">
-                <Box position="absolute" top="-40px" right="0">
+                <Box position="absolute" top="-50px" right="0">
                     <LanguageSwitcher />
                 </Box>
 
