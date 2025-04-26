@@ -4,9 +4,9 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
     hu: {
         translation: {
-            name: 'Név',
+            name: 'Teljes Név',
             email: 'Email',
-            guestNames: 'Vendégek nevei',
+            guestNames: 'Vendégek teljes nevei',
             numberOfGuests: 'Vendégek száma',
             veganMenus: 'Vegetáriánus menük',
             attending: 'Részt veszek 💍',
@@ -21,14 +21,24 @@ const resources = {
             invitationText: "Szeretettel meghívunk az esküvőnkre.\nHa válaszolni szeretnél, nyomd meg a Válasz gombot.\nHa többet szeretnél megtudni az esküvőről, nyomd meg az Infó gombot.",
             respond: "Válasz",
             info: "Infó",
-            back: "Vissza"
+            back: "Vissza",
+            message: "Megjegyzés",
+            'info.scheduleTitle': "Esküvői program",
+            'info.ceremony': "Templomi szertartás",
+            'info.dinner': "Vacsora és buli",
+            'info.churchLocation': "Templom helyszíne",
+            'info.venueLocation': "Vacsora helyszíne",
+            'info.routeButton': "Útvonal tervezése",
+            submitSuccess: "Sikeresen Elküldve",
+            sending: "Küldés ...",
+            redirecting: "Vissza a főoldalra "
         },
     },
     en: {
         translation: {
-            name: 'Name',
+            name: 'Full Name',
             email: 'Email',
-            guestNames: 'Guest Names',
+            guestNames: 'Guest full names',
             numberOfGuests: 'Number of Guests',
             veganMenus: 'Vegan Menus',
             attending: 'I will be attending 💍',
@@ -43,7 +53,17 @@ const resources = {
             invitationText: "We would like to invite you to our ceremony.\nIf you wish to respond, press the Respond button.\nIf you wish to find out more about the wedding, press the Info button.",
             respond: "Respond",
             info: "Info",
-            back: "Back"
+            back: "Back",
+            message: "Message",
+            'info.scheduleTitle': "Wedding Schedule",
+            'info.ceremony': "Church Ceremony",
+            'info.dinner': "Dinner & Party",
+            'info.churchLocation': "Church Location",
+            'info.venueLocation': "Dinner Venue Location",
+            'info.routeButton': "Plan Route",
+            submitSuccess: "Successfully Submitted",
+            sending: "Sending ...",
+            redirecting: "Redirecting to home page "
         },
     },
 };

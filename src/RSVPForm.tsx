@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Box,
     Button,
@@ -14,7 +14,8 @@ import {
     NumberInputField,
     NumberInputStepper,
     NumberIncrementStepper,
-    NumberDecrementStepper
+    NumberDecrementStepper,
+    Textarea
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -29,6 +30,7 @@ type FormDataState = {
     guestNumbers: number;
     veganMenus: number;
     attending: boolean;
+    message: string;
 };
 
 const RSVPForm: React.FC = () => {
@@ -43,11 +45,11 @@ const RSVPForm: React.FC = () => {
         guests: [],
         guestNumbers: 0,
         veganMenus: 0,
-        attending: false
+        attending: false,
+        message: ''
     });
 
     const [guestInput, setGuestInput] = useState('');
-    const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [selfGuest, setSelfGuest] = useState<string | null>(null);
 
@@ -87,7 +89,7 @@ const RSVPForm: React.FC = () => {
         }
     }, [formData.attending, formData.name]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
@@ -101,14 +103,22 @@ const RSVPForm: React.FC = () => {
         const trimmed = guestInput.trim();
         if (trimmed && !formData.guests.includes(trimmed)) {
             const newGuests = [...formData.guests, trimmed];
-            setFormData(prev => ({ ...prev, guests: newGuests, guestNumbers: newGuests.length }));
+            setFormData(prev => ({
+                ...prev,
+                guests: newGuests,
+                guestNumbers: newGuests.length
+            }));
             setGuestInput('');
         }
     };
 
     const removeGuest = (index: number) => {
         const updatedGuests = formData.guests.filter((_, i) => i !== index);
-        setFormData(prev => ({ ...prev, guests: updatedGuests, guestNumbers: updatedGuests.length }));
+        setFormData(prev => ({
+            ...prev,
+            guests: updatedGuests,
+            guestNumbers: updatedGuests.length
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -138,26 +148,30 @@ const RSVPForm: React.FC = () => {
             });
 
             if (response.ok) {
-                setSubmitted(true);
-                toast({
-                    title: '🎉',
-                    description: t('submitSuccess'),
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                    position: 'top'
+                setFormData({
+                    name: '',
+                    email: '',
+                    guests: [],
+                    guestNumbers: 0,
+                    veganMenus: 0,
+                    attending: false,
+                    message: ''
                 });
-
-                setFormData({ name: '', email: '', guests: [], guestNumbers: 0, veganMenus: 0, attending: false });
                 setGuestInput('');
                 setSelfGuest(null);
 
-                setTimeout(() => navigate('/thank-you'), 3000);
+                setTimeout(() => navigate('/thank-you'), 2000);
             } else {
                 throw new Error('Failed to submit');
             }
         } catch (err) {
-            toast({ title: t('submitFail'), status: 'error', duration: 4000, isClosable: true, position: 'top' });
+            toast({
+                title: t('submitFail'),
+                status: 'error',
+                duration: 4000,
+                isClosable: true,
+                position: 'top'
+            });
         } finally {
             setLoading(false);
         }
@@ -170,7 +184,7 @@ const RSVPForm: React.FC = () => {
             bg="whiteAlpha.800"
             backdropFilter="blur(10px)"
             p={10}
-            margin={{base: "5", md: "10", lg: "20"}}
+            margin={{ base: "5", md: "10", lg: "20" }}
             borderRadius="2xl"
             boxShadow="lg"
         >
@@ -188,7 +202,6 @@ const RSVPForm: React.FC = () => {
             </Box>
 
             <form onSubmit={handleSubmit}>
-
                 <LanguageSwitcher />
 
                 <VStack spacing={6} align="stretch">
@@ -197,18 +210,14 @@ const RSVPForm: React.FC = () => {
                         <Input
                             name="name"
                             value={formData.name}
+                            borderColor="gray.300"
                             onChange={handleChange}
                             bg="brand.beige"
-                            borderColor="gray.300"
-                            _placeholder={{ color: 'gray.500' }}
-                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
                         />
                     </FormControl>
 
                     <FormControl display="flex" alignItems="center">
-                        <FormLabel htmlFor="attending" mb="0" fontWeight="medium">
-                            {t('attending')}
-                        </FormLabel>
+                        <FormLabel htmlFor="attending" mb="0">{t('attending')}</FormLabel>
                         <Switch
                             id="attending"
                             name="attending"
@@ -224,12 +233,10 @@ const RSVPForm: React.FC = () => {
                         <Input
                             type="email"
                             name="email"
+                            borderColor="gray.300"
                             value={formData.email}
                             onChange={handleChange}
                             bg="brand.beige"
-                            borderColor="gray.300"
-                            _placeholder={{ color: 'gray.500' }}
-                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
                         />
                     </FormControl>
 
@@ -239,6 +246,7 @@ const RSVPForm: React.FC = () => {
                             <Input
                                 placeholder={t('addGuestPlaceholder')}
                                 value={guestInput}
+                                borderColor="gray.300"
                                 onChange={e => setGuestInput(e.target.value)}
                                 onKeyDown={e => {
                                     if (e.key === 'Enter') {
@@ -248,30 +256,17 @@ const RSVPForm: React.FC = () => {
                                 }}
                                 onBlur={addGuest}
                                 bg="brand.beige"
-                                borderColor="gray.300"
-                                _placeholder={{ color: 'gray.500' }}
-                                _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
-                                isDisabled={!formData.attending}
                             />
                             <IconButton
                                 aria-label={t('addGuestPlaceholder')}
                                 icon={<AddIcon />}
                                 onClick={addGuest}
                                 colorScheme="green"
-                                variant="outline"
-                                borderRadius="full"
                                 size="sm"
-                                isDisabled={!formData.attending}
                             />
                         </HStack>
 
-                        <Box
-                            mt={2}
-                            display="flex"
-                            flexWrap="wrap"
-                            gap={2}
-                            minH="40px"
-                        >
+                        <Box mt={2} display="flex" flexWrap="wrap" gap={2} minH="40px">
                             {formData.guests.map((guest, index) => (
                                 <Box
                                     key={index}
@@ -308,18 +303,6 @@ const RSVPForm: React.FC = () => {
                     </FormControl>
 
                     <FormControl isRequired={formData.attending} isDisabled={!formData.attending}>
-                        <FormLabel>{t('numberOfGuests')}</FormLabel>
-                        <Input
-                            value={formData.guestNumbers}
-                            isReadOnly
-                            bg="brand.beige"
-                            borderColor="gray.300"
-                            _placeholder={{ color: 'gray.500' }}
-                            _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
-                        />
-                    </FormControl>
-
-                    <FormControl isRequired={formData.attending} isDisabled={!formData.attending}>
                         <FormLabel>{t('veganMenus')}</FormLabel>
                         <NumberInput
                             min={0}
@@ -349,10 +332,22 @@ const RSVPForm: React.FC = () => {
                         </NumberInput>
                     </FormControl>
 
+                    <FormControl>
+                        <FormLabel>{t('message')}</FormLabel>
+                        <Textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            borderColor="gray.300"
+                            placeholder={t('writeMessage')}
+                            bg="brand.beige"
+                        />
+                    </FormControl>
+
                     <Button
                         colorScheme="brand"
                         bg="#e0d6c9"
-                        _hover={{ bg: 'brand.green', color: 'white' }}
+                        _hover={{ color: 'white' }}
                         type="submit"
                         width="full"
                         isLoading={loading}
@@ -371,11 +366,6 @@ const RSVPForm: React.FC = () => {
                         {t('back')}
                     </Button>
 
-                    {submitted && (
-                        <Box color="green.600" fontWeight="medium" textAlign="center">
-                            🎉 {t('submitSuccess')}
-                        </Box>
-                    )}
                 </VStack>
             </form>
         </Box>
