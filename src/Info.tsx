@@ -58,7 +58,7 @@ const Info: React.FC = () => {
 
                 <Divider />
 
-                <VStack spacing={6} w="80%">
+                <VStack spacing={6} w={{base: "90%", md: "80%"}}>
                     <Box w="100%">
                         <FormLabel fontWeight="medium">{t('info.churchLocation')}</FormLabel>
                         <Box
