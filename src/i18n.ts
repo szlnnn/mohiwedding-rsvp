@@ -31,7 +31,8 @@ const resources = {
             'info.routeButton': "Útvonal tervezése",
             submitSuccess: "Sikeresen Elküldve",
             sending: "Küldés ...",
-            redirecting: "Vissza a főoldalra "
+            redirecting: "Vissza a főoldalra ",
+            submitFail: "Hiba történt"
         },
     },
     en: {
@@ -63,7 +64,8 @@ const resources = {
             'info.routeButton': "Plan Route",
             submitSuccess: "Successfully Submitted",
             sending: "Sending ...",
-            redirecting: "Redirecting to home page "
+            redirecting: "Redirecting to home page ",
+            submitFail: "Failed to send"
         },
     },
 };
