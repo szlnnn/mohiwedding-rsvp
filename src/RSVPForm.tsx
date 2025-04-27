@@ -38,7 +38,7 @@ const RSVPForm: React.FC = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const countdown = useCountdown('2025-09-20T15:30:00');
-
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [formData, setFormData] = useState<FormDataState>({
         name: '',
         email: '',
@@ -141,7 +141,7 @@ const RSVPForm: React.FC = () => {
         toast({ title: t('sending'), status: 'info', duration: 2000, isClosable: false, position: 'top' });
 
         try {
-            const response = await fetch('/api/wedding/rsvp', {
+            const response = await fetch(backendUrl + '/api/wedding/rsvp', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

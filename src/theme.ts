@@ -31,13 +31,13 @@ const theme = extendTheme({
     Switch: {
       baseStyle: {
         track: {
-          bg: '#e0d6c9', // Soft sand (visible on beige)
+          bg: '#e0d6c9',
           _checked: {
-            bg: '#A3C49A', // your theme's green
+            bg: '#A3C49A',
           },
         },
         thumb: {
-          bg: '#b29785', // muted mocha for visibility
+          bg: '#b29785',
           _checked: {
             bg: 'white',
           },
