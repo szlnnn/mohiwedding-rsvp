@@ -10,7 +10,7 @@ const resources = {
             numberOfGuests: 'Vendégek száma',
             veganMenus: 'Vegetáriánus menük',
             attending: 'Részt veszek 💍',
-            submit: 'RSVP elküldése',
+            submit: 'Válasz elküldése',
             thankYou: '🎉 Köszönjük! A visszajelzést megkaptuk.',
             addGuestPlaceholder: 'Kérlek add meg a vendég nevét majd nyomj a plusz ikonra!',
             thanks: 'Köszönjük!',
@@ -70,7 +70,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
     resources,
-    lng: 'hu', // default language
+    lng: 'hu',
     fallbackLng: 'en',
     interpolation: {
         escapeValue: false,

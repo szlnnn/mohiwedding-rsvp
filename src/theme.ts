@@ -8,8 +8,8 @@ const config = {
 const theme = extendTheme({
   config,
   fonts: {
-    heading: `'Garamond', ${baseTheme.fonts?.heading}`,
-    body: `'Garamond', ${baseTheme.fonts?.body}`,
+    heading: `'EB Garamond', ${baseTheme.fonts?.heading}`,
+    body: `'EB Garamond', ${baseTheme.fonts?.body}`,
   },
   colors: {
     brand: {
