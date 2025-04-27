@@ -12,13 +12,17 @@ const ThankYou = () => {
 
     useEffect(() => {
         if (!toast.isActive(toastId)) {
+
             toast({
                 id: toastId,
-                title: `${t('redirecting')} ${counter}...`,
-                status: 'info',
                 duration: null,
                 isClosable: false,
-                position: 'top'
+                position: 'top',
+                render: () => (
+                    <Box color="black" p={3} bg="#e0d6c9" borderRadius="md">
+                        {t('redirecting')} {counter}...
+                    </Box>
+                ),
             });
         }
 
@@ -37,11 +41,14 @@ const ThankYou = () => {
         } else {
             if (toast.isActive(toastId)) {
                 toast.update(toastId, {
-                    title: `${t('redirecting')} ${counter}...`,
-                    status: 'info',
                     duration: null,
                     isClosable: false,
-                    position: 'top'
+                    position: 'top',
+                    render: () => (
+                        <Box  color="black" p={3} bg="#e0d6c9" borderRadius="md">
+                            {t('redirecting')} {counter}...
+                        </Box>
+                    ),
                 });
             }
         }

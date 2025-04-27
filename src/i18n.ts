@@ -6,7 +6,7 @@ const resources = {
         translation: {
             name: 'Teljes Név',
             email: 'Email',
-            guestNames: 'Vendégek teljes nevei',
+            guestNames: 'Vendégek teljes neve',
             numberOfGuests: 'Vendégek száma',
             veganMenus: 'Vegetáriánus menük',
             attending: 'Részt veszek 💍',
@@ -15,7 +15,7 @@ const resources = {
             addGuestPlaceholder: 'Kérlek add meg a vendég nevét majd nyomj a plusz ikonra!',
             thanks: 'Köszönjük!',
             countdownText: 'Már csak {{days}} nap, {{hours}} óra, {{minutes}} perc és {{seconds}} másodperc van hátra!',
-            countdownHeader: ' Alig várjuk, hogy együtt ünnepeljünk!',
+            countdownHeader: ' Várjuk, hogy együtt ünnepeljünk!',
             weddingDateExact: "2025. szeptember 20. – 15:30",
             noGuests: "Még nem adtál meg vendéget.",
             invitationText: "Szeretettel meghívunk az esküvőnkre.\nHa válaszolni szeretnél, nyomd meg a Válasz gombot.\nHa többet szeretnél megtudni az esküvőről, nyomd meg az Infó gombot.",
@@ -32,7 +32,9 @@ const resources = {
             submitSuccess: "Sikeresen Elküldve",
             sending: "Küldés ...",
             redirecting: "Vissza a főoldalra ",
-            submitFail: "Hiba történt"
+            submitFail: "Hiba történt",
+            writeMessage: "Üzenj nekünk",
+            please_enter_a_valid_email: "Kérlek megfelelő email formátumot adj meg",
         },
     },
     en: {
@@ -65,7 +67,9 @@ const resources = {
             submitSuccess: "Successfully Submitted",
             sending: "Sending ...",
             redirecting: "Redirecting to home page ",
-            submitFail: "Failed to send"
+            submitFail: "Failed to send",
+            writeMessage: "Send a message",
+            please_enter_a_valid_email: "Please enter a valid email",
         },
     },
 };

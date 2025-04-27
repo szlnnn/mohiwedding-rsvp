@@ -15,7 +15,7 @@ import {
     NumberInputStepper,
     NumberIncrementStepper,
     NumberDecrementStepper,
-    Textarea
+    Textarea, FormErrorMessage
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
@@ -138,7 +138,16 @@ const RSVPForm: React.FC = () => {
             return;
         }
 
-        toast({ title: t('sending'), status: 'info', duration: 2000, isClosable: false, position: 'top' });
+        toast({
+            position: 'top',
+            duration: 2000,
+            isClosable: false,
+            render: () => (
+                <Box color="black" p={3} bg="#e0d6c9" borderRadius="md">
+                    {t('sending')}
+                </Box>
+            ),
+        });
 
         try {
             const response = await fetch(backendUrl + '/api/wedding/rsvp', {
@@ -228,7 +237,11 @@ const RSVPForm: React.FC = () => {
                         />
                     </FormControl>
 
-                    <FormControl isRequired={formData.attending} isDisabled={!formData.attending}>
+                    <FormControl
+                        isRequired={formData.attending}
+                        isDisabled={!formData.attending}
+                        isInvalid={formData.attending && formData.email !== '' && !/^\S+@\S+\.\S+$/.test(formData.email)}
+                    >
                         <FormLabel>{t('email')}</FormLabel>
                         <Input
                             type="email"
@@ -238,6 +251,9 @@ const RSVPForm: React.FC = () => {
                             onChange={handleChange}
                             bg="brand.beige"
                         />
+                        <FormErrorMessage>
+                            {t('please_enter_a_valid_email')}
+                        </FormErrorMessage>
                     </FormControl>
 
                     <FormControl isDisabled={!formData.attending}>
@@ -261,7 +277,8 @@ const RSVPForm: React.FC = () => {
                                 aria-label={t('addGuestPlaceholder')}
                                 icon={<AddIcon />}
                                 onClick={addGuest}
-                                colorScheme="green"
+                                colorScheme="brand"
+                                backgroundColor="brand.green"
                                 size="sm"
                             />
                         </HStack>
@@ -273,7 +290,6 @@ const RSVPForm: React.FC = () => {
                                     px={3}
                                     py={0.5}
                                     bg="#e0d6c9"
-                                    color="white"
                                     borderRadius="full"
                                     display="flex"
                                     alignItems="center"
@@ -286,7 +302,6 @@ const RSVPForm: React.FC = () => {
                                         ml={2}
                                         fontSize="sm"
                                         onClick={() => removeGuest(index)}
-                                        color="white"
                                         _hover={{ opacity: 0.7 }}
                                     >
                                         ×
