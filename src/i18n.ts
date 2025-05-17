@@ -6,9 +6,9 @@ const resources = {
         translation: {
             name: 'Teljes Név',
             email: 'Email',
-            guestNames: 'Vendégek teljes neve',
+            guestNames: 'További vendégek teljes neve',
             numberOfGuests: 'Vendégek száma',
-            veganMenus: 'Vegetáriánus menük',
+            veganMenus: 'Ha vegetáriánus menüt szeretnétek, kérjük, jelezzétek, hány főre: ',
             attending: 'Részt veszek 💍',
             submit: 'Válasz elküldése',
             thankYou: '🎉 Köszönjük! A visszajelzést megkaptuk.',
@@ -35,6 +35,7 @@ const resources = {
             submitFail: "Hiba történt",
             writeMessage: "Üzenj nekünk",
             please_enter_a_valid_email: "Kérlek megfelelő email formátumot adj meg",
+            churchName: "Gidófalvi református templom"
         },
     },
     en: {
@@ -43,7 +44,7 @@ const resources = {
             email: 'Email',
             guestNames: 'Guest full names',
             numberOfGuests: 'Number of Guests',
-            veganMenus: 'Vegan Menus',
+            veganMenus: 'If you need vegetarian menus, let us know how many: ',
             attending: 'I will be attending 💍',
             submit: 'Submit RSVP',
             thankYou: '🎉 Thank you! Your RSVP has been received.',
@@ -70,6 +71,7 @@ const resources = {
             submitFail: "Failed to send",
             writeMessage: "Send a message",
             please_enter_a_valid_email: "Please enter a valid email",
+            churchName: "Fortified Reformed Church Ghidfalău",
         },
     },
 };

@@ -10,14 +10,9 @@ import {
     Switch,
     useToast,
     VStack,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    NumberIncrementStepper,
-    NumberDecrementStepper,
     Textarea, FormErrorMessage
 } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+import {AddIcon, MinusIcon} from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher.tsx';
@@ -318,34 +313,64 @@ const RSVPForm: React.FC = () => {
                     </FormControl>
 
                     <FormControl isRequired={formData.attending} isDisabled={!formData.attending}>
-                        <FormLabel>{t('veganMenus')}</FormLabel>
-                        <NumberInput
-                            min={0}
-                            max={formData.guestNumbers}
-                            value={formData.veganMenus}
-                            onChange={(_, numValue) =>
-                                setFormData(prev => ({ ...prev, veganMenus: numValue }))
-                            }
-                            clampValueOnBlur={false}
-                        >
-                            <NumberInputField
+                        <FormLabel>
+                            {t('veganMenus')}
+                        </FormLabel>
+                        <HStack spacing={1}>
+                            <Input
+                                value={formData.veganMenus}
+                                isReadOnly
+                                textAlign="center"
+                                width="3rem"
+                                height="2rem"
+                                fontSize="md"
+                                borderRadius="md"
                                 bg="brand.beige"
                                 borderColor="gray.300"
-                                _placeholder={{ color: 'gray.500' }}
-                                _focus={{ borderColor: 'brand.red', boxShadow: '0 0 0 1px #d44d3f' }}
+                                color="gray.800"
                             />
-                            <NumberInputStepper>
-                                <NumberIncrementStepper
-                                    _hover={{ bg: 'brand.red', color: 'white' }}
-                                    color="gray.700"
-                                />
-                                <NumberDecrementStepper
-                                    _hover={{ bg: 'brand.red', color: 'white' }}
-                                    color="gray.700"
-                                />
-                            </NumberInputStepper>
-                        </NumberInput>
+                            <IconButton
+                                aria-label="Decrease"
+                                icon={<MinusIcon boxSize={3} />}
+                                onClick={() =>
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        veganMenus: Math.max(0, prev.veganMenus - 1),
+                                    }))
+                                }
+                                isDisabled={!formData.attending || formData.veganMenus <= 0}
+                                size="sm"
+                                variant="outline"
+                                borderColor="#f0c5c5"
+                                colorScheme="brand"
+                                backgroundColor="brand.green"
+                                _hover={{ color: 'white' }}
+                                borderRadius="md"
+                            />
+                            <IconButton
+                                aria-label="Increase"
+                                icon={<AddIcon boxSize={3} />}
+                                onClick={() =>
+                                    setFormData(prev => ({
+                                        ...prev,
+                                        veganMenus: Math.min(formData.guestNumbers, prev.veganMenus + 1),
+                                    }))
+                                }
+                                isDisabled={
+                                    !formData.attending || formData.veganMenus >= formData.guestNumbers
+                                }
+                                size="sm"
+                                variant="outline"
+                                borderColor="#f0c5c5"
+                                colorScheme="brand"
+                                backgroundColor="brand.green"
+                                _hover={{ color: 'white' }}
+                                borderRadius="md"
+                            />
+                        </HStack>
                     </FormControl>
+
+
 
                     <FormControl>
                         <FormLabel>{t('message')}</FormLabel>

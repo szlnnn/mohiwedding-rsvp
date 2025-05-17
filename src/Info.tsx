@@ -41,7 +41,7 @@ const Info: React.FC = () => {
                 <VStack spacing={4}>
                     <Box>
                         <Text fontSize="lg" fontWeight="bold">15:30 – {t('info.ceremony')}</Text>
-                        <Text fontSize="md">Fortified Reformed Church Ghidfalău</Text>
+                        <Text fontSize="md">{t('churchName')}</Text>
                         <Text fontSize="sm" color="gray.600">
                             Ghidfalău 527095, Romania
                         </Text>
