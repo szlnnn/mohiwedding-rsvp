@@ -18,39 +18,6 @@ const Info: React.FC = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const handleSaveTheDate = () => {
-        const title = 'Szili & Uzonka Wedding';
-        const description = 'Esküvői ünnepség Szili & Uzonka';
-        const location = 'Fortified Reformed Church Ghidfalău, Romania';
-        const startDate = new Date('2025-09-20T13:30:00Z'); // UTC
-        const endDate = new Date('2025-09-20T22:30:00Z');
-
-        const formatDate = (date: Date) =>
-            date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-
-        const icsContent = [
-            'BEGIN:VCALENDAR',
-            'VERSION:2.0',
-            'BEGIN:VEVENT',
-            `DTSTART:${formatDate(startDate)}`,
-            `DTEND:${formatDate(endDate)}`,
-            `SUMMARY:${title}`,
-            `DESCRIPTION:${description}`,
-            `LOCATION:${location}`,
-            'END:VEVENT',
-            'END:VCALENDAR'
-        ].join('\r\n');
-
-        const blob = new Blob([icsContent], { type: 'text/calendar' });
-        const url = URL.createObjectURL(blob);
-
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'szili-uzonka-wedding.ics';
-        link.click();
-        URL.revokeObjectURL(url);
-    };
-
     return (
         <Box
             w="100vw"
@@ -124,20 +91,22 @@ const Info: React.FC = () => {
                     w={{ base: '70%' }}
                     colorScheme="brand"
                     bg="#e0d6c9"
-                    _hover={{ color: 'white' }}
+                    _hover={{ color: 'white', bg: '#d4c1af' }}
                 >
                     {t('info.routeButton')}
                 </Button>
 
                 <Button
+                    as={Link}
+                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Szili+%26+Uzonka+Wedding&dates=20250920/20250921&details=Every+information+can+be+found+on+our+page:+mohiwedding.hu&location=Panorama+Boutique+Hotel+%26+Event+Hall,+Sfântu+Gheorghe,+Romania"
+                    isExternal
                     size="md"
-                    w={{ base: "70%" }}
-                    bg="#D9644A"
+                    w={{ base: '70%' }}
+                    bg="#d44d3f"
                     color="white"
-                    _hover={{ bg: '#c13c2f' }}
-                    onClick={handleSaveTheDate}
+                    _hover={{ bg: '#c13c2f', color:"#e0d6c9" }}
                 >
-                    {t('info.addToCalendar')}
+                    {t('info.saveTheDate')}
                 </Button>
 
                 <Button
@@ -150,6 +119,7 @@ const Info: React.FC = () => {
                 >
                     {t('back')}
                 </Button>
+
             </VStack>
         </Box>
     );
