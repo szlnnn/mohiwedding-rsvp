@@ -7,7 +7,8 @@ import {
     Text,
     VStack,
     Link,
-    Divider, HStack
+    Divider,
+    HStack
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,39 @@ import LanguageSwitcher from './LanguageSwitcher';
 const Info: React.FC = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+
+    const handleSaveTheDate = () => {
+        const title = 'Szili & Uzonka Wedding';
+        const description = 'Esküvői ünnepség Szili & Uzonka';
+        const location = 'Fortified Reformed Church Ghidfalău, Romania';
+        const startDate = new Date('2025-09-20T13:30:00Z'); // UTC
+        const endDate = new Date('2025-09-20T22:30:00Z');
+
+        const formatDate = (date: Date) =>
+            date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+        const icsContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'BEGIN:VEVENT',
+            `DTSTART:${formatDate(startDate)}`,
+            `DTEND:${formatDate(endDate)}`,
+            `SUMMARY:${title}`,
+            `DESCRIPTION:${description}`,
+            `LOCATION:${location}`,
+            'END:VEVENT',
+            'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'szili-uzonka-wedding.ics';
+        link.click();
+        URL.revokeObjectURL(url);
+    };
 
     return (
         <Box
@@ -27,16 +61,14 @@ const Info: React.FC = () => {
             backdropFilter="blur(10px)"
             position="relative"
         >
-
             <VStack spacing={10} maxW="700px" mx="auto" align="center" textAlign="center">
 
                 <HStack>
                     <Heading as="h2" size="lg">
                         {t('info.scheduleTitle')}
                     </Heading>
-                    <LanguageSwitcher/>
+                    <LanguageSwitcher />
                 </HStack>
-
 
                 <VStack spacing={4}>
                     <Box>
@@ -58,7 +90,7 @@ const Info: React.FC = () => {
 
                 <Divider />
 
-                <VStack spacing={6} w={{base: "90%", md: "80%"}}>
+                <VStack spacing={6} w={{ base: "90%", md: "80%" }}>
                     <Box w="100%">
                         <FormLabel fontWeight="medium">{t('info.churchLocation')}</FormLabel>
                         <Box
@@ -84,8 +116,6 @@ const Info: React.FC = () => {
                     </Box>
                 </VStack>
 
-
-
                 <Button
                     as={Link}
                     href="https://www.google.com/maps/dir/Fortified+Reformed+Church+Ghidfalău,+Ghidfalău+527095,+Romania/Panorama+Boutique+Hotel+%26+Event+Hall,+Calea+Valcele,+DN13E+9,+Sfântu+Gheorghe+527175,+Romania"
@@ -99,21 +129,27 @@ const Info: React.FC = () => {
                     {t('info.routeButton')}
                 </Button>
 
-
-
-
+                <Button
+                    size="md"
+                    w={{ base: "70%" }}
+                    bg="#D9644A"
+                    color="white"
+                    _hover={{ bg: '#c13c2f' }}
+                    onClick={handleSaveTheDate}
+                >
+                    {t('info.addToCalendar')}
+                </Button>
 
                 <Button
-                        size="md"
-                        w={{ base: "70%" }}
-                        colorScheme="brand"
-                        bg="brand.green"
-                        _hover={{ color: 'white' }}
-                        onClick={() => navigate('/')}
-                    >
-                        {t('back')}
-                    </Button>
-
+                    size="md"
+                    w={{ base: "70%" }}
+                    colorScheme="brand"
+                    bg="brand.green"
+                    _hover={{ color: 'white' }}
+                    onClick={() => navigate('/')}
+                >
+                    {t('back')}
+                </Button>
             </VStack>
         </Box>
     );

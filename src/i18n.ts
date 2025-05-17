@@ -35,7 +35,8 @@ const resources = {
             submitFail: "Hiba történt",
             writeMessage: "Üzenj nekünk",
             please_enter_a_valid_email: "Kérlek megfelelő email formátumot adj meg",
-            churchName: "Gidófalvi református templom"
+            churchName: "Gidófalvi református templom",
+            "info.addToCalendar": "Hozzáadás a naptárhoz"
         },
     },
     en: {
@@ -72,6 +73,7 @@ const resources = {
             writeMessage: "Send a message",
             please_enter_a_valid_email: "Please enter a valid email",
             churchName: "Fortified Reformed Church Ghidfalău",
+            "info.addToCalendar": "Add to Calendar"
         },
     },
 };
